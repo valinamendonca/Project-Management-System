@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import '../css/dashboard.css'
+import {Link} from 'react-router-dom'
 
 function Navbar(det) {
   //const [image,setImage]=useState([]);
@@ -48,9 +49,9 @@ console.log(det.details);
     <div className='photo'><img src=""></img></div>
     <h2>{data.Name}</h2>
     <ul>
-        <li><a href='#user_profile'>My Profile</a></li>
+        <li><Link to='#user_profile'>My Profile</Link></li>
         {data.project_manager?
-        <li><a href="/projects">Manage Projects</a></li>
+        <li><Link to="/projects">Manage Projects</Link></li>
         :<li></li>}
         <li></li>
     </ul>
