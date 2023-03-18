@@ -11,6 +11,7 @@ const Module=React.memo(()=> {
         const routeChange = (path) =>{  
                 navigate(path);
         }
+        /*
         const [authenticated, setauthenticated] = useState(localStorage.getItem("authenticated"));
         useEffect(() => {
                 const loggedInUser = localStorage.getItem("authenticated");
@@ -21,7 +22,7 @@ const Module=React.memo(()=> {
                         routeChange("/");
                 }
         }, [authenticated]);
-        
+        */
 
         const [user,setUser]=useState({});
         const [project,setProject]=useState({});
@@ -57,8 +58,8 @@ const Module=React.memo(()=> {
         const logout=((event)=>{
                 event.preventDefault();
                 localStorage.clear();
-                setauthenticated(false);
-                //routeChange("/");
+                //setauthenticated(false);
+                routeChange("/");
         })
         
         //const [time,setTime]=useState({hours:"",minutes:"",seconds:""})

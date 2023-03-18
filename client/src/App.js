@@ -1,4 +1,5 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './Pages/Login'
 import PageNotFound from './Pages/PageNotFound'
@@ -7,7 +8,9 @@ import ChangePassword from './Pages/ChangePassword'
 import Dashboard from './Pages/Dashboard'
 import Module from './Pages/Module';
 import Project from './Pages/Project'
+import PrivateRoute from './Pages/PrivateRoute';
 
+/*
 const router=createBrowserRouter([
   {
   path : '/',
@@ -19,6 +22,7 @@ const router=createBrowserRouter([
     element:<Register/>
   },
   */
+ /*
   {
     path : '/reset',
     element:<Reset/>
@@ -45,11 +49,42 @@ const router=createBrowserRouter([
     element:<PageNotFound/>
   }
 ])
-
+*/
 function App() {
+  const isAuthenticated = true;
+  const auth=()=>{
+    console.log(localStorage.getItem("authenticated"));
+    if(localStorage.getItem("authenticated")!=null){
+      console.log(localStorage.getItem("authenticated"));
+      console.log(localStorage.getItem("id"));
+      return true;
+    }
+    return false;
+    //console.log(i);
+  }
+  //localStorage.clear()
+  var authen=auth();
+  //localStorage.clear();
+  //console.log("hello");
   return (
     <div className="App">
-      <RouterProvider router={router}></RouterProvider>
+     {/* <RouterProvider router={router}></RouterProvider>*/}
+
+     <Router>
+      <Routes>
+        {/* <PrivateRoute path="/" component={Dashboard} isAuthenticated={isAuthenticated}/>*/}
+        
+        <Route exact path="/" element={<Login/>} />
+        <Route path="/reset" element={<Reset/>} />
+        <Route path="/changePassword" element={<ChangePassword/>} />
+        <Route element={<PrivateRoute auth={authen}/>}>
+          <Route exact path='/dashboard' element={<Dashboard/>}/>
+          <Route exact path='/module' element={<Module/>}/>
+        </Route>
+        <Route path='*' element={<PageNotFound/>}/>
+        
+      </Routes>
+    </Router>
     </div>
   );
 }

@@ -5,13 +5,20 @@ import axios from "axios";
 
 
 const Login=()=> {
+  
   const navigate=useNavigate();
   const routeChange = (path) =>{  
     navigate(path);
   }
-  const [authenticated,setAuthenticated]=useState(localStorage.getItem("authenticated")||false);
+  //const [authenticated,setAuthenticated]=useState(localStorage.getItem("authenticated")||false);
 
+useEffect(()=>{
+  if(localStorage.getItem("authenticated")!=null){
+    routeChange("/dashboard")
+  }
 
+},[])
+/*
   useEffect(() => {
     const loggedIn = localStorage.getItem("authenticated");
     //const userId=localStorage.getItem("id");
@@ -25,7 +32,7 @@ const Login=()=> {
       routeChange("/dashboard");
     }
   }, [authenticated]);
-
+*/
 /*
   if(localStorage.getItem("authenticated")){
     routeChange("/dashboard");
@@ -39,16 +46,17 @@ const Login=()=> {
       const email=event.target.email.value;
       const pass=event.target.pass.value;
       const user_data={email,pass};
-      console.log(user_data);
+      //console.log(user_data);
       if(user_data){
         axios.post("http://localhost:3001/login",user_data)
         .then((req,res)=>{
-          console.log(req);
+          //console.log(req);
           if(req.statusText==="Logged in successfully!!!"){
             localStorage.setItem("id",email)
             localStorage.setItem("authenticated",true);
-            setAuthenticated(true);
-
+            routeChange("/dashboard");
+            window.location.reload(false)
+            //setAuthenticated(true);
           }
           else if(req.statusText==="Wrong credentials!")
             alert("Wrong credentials!")

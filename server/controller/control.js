@@ -2,13 +2,17 @@ const con=require("../database/connect");
 
 const det=(req,res)=>{
         const email=req.query.id
+        //console.log(localStorage.getItem("authenticated")); 
         //console.log(email);
         //console.log(req.query.id);
+        //console.log(email);
+        if(email==null)
+        return;
         con.query("select * from users where email='"+email+"'", function(err,result){
                 if(err) console.log(err);
                 else{
                         con.query("select * from project where emp1="+result[0].eid+" || emp2="+result[0].eid+" || emp3="+result[0].eid+" || emp4="+result[0].eid+" || emp5="+result[0].eid, function(err,result1){
-                                console.log(result1[0].pid);
+                                //console.log(result1[0].pid);
                                 if(err) console.log(err);
                                 else if(result1.length>0){
                                         //console.log(result1[0].name);
@@ -55,7 +59,7 @@ const mod=(req,res)=>{
                                         
                                 }
                                 else{
-                                        console.log("nil");
+                                        //console.log("nil");
                                         res.statusMessage="No Modules!";
                                         res.send(result);
                                 }

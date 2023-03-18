@@ -3,12 +3,16 @@ import '../css/dashboard.css';
 import {Navigate,useNavigate} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import axios from 'axios';
+import Login from './Login';
 
 function Dashboard() {
+        //console.log("dashboard");
         const navigate=useNavigate();
-        const routeChange = (path) =>{  
+        const routeChange = (path) =>{
                 navigate(path);
         }
+        //console.log(localStorage.getItem("id"));
+        /*
         const [authenticated, setauthenticated] = useState(localStorage.getItem("authenticated"));
         useEffect(() => {
                 const loggedInUser = localStorage.getItem("authenticated");
@@ -21,7 +25,7 @@ function Dashboard() {
                         routeChange("/");
                 }
         }, [authenticated]);
-        
+        */
 
         const [user,setUser]=useState({});
         const [project, setProject]=useState({});
@@ -29,6 +33,7 @@ function Dashboard() {
         //fetch data
         const fetchData=async(req,res)=>{
                 const id=localStorage.getItem("id");
+
                 return axios.get("http://localhost:3001/dashboard?id="+id)
                 .then((req,res)=>{
                         if(req.statusText==="No Projects Assigned!"){
@@ -47,6 +52,9 @@ function Dashboard() {
                 
         }        
         useEffect(()=>{
+                        if(localStorage.getItem("authenticated")==null){
+                          routeChange("/")
+                        }
                 fetchData();
         },[])
         
@@ -54,8 +62,10 @@ function Dashboard() {
         const logout=(event)=>{
                 event.preventDefault();
                 localStorage.clear();
-                setauthenticated(false);
-                //routeChange("/");
+                //console.log("bye");
+                //setauthenticated(false);
+                
+                routeChange("/");
         }
         
         let data=-1;
@@ -68,7 +78,7 @@ function Dashboard() {
                         const mod=(event)=>{
                                 const data = event.target.dataset.myData;
                                 localStorage.setItem("project_id",data);
-                                console.log(data);
+                                //console.log(data);
                                 routeChange("/module");
                         }
                         //console.log(project);
