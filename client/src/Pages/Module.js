@@ -4,6 +4,7 @@ import {Navigate,useNavigate} from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import axios from 'axios';
 import Mod from '../Components/Mod'
+import Header from '../Components/Header';
 
 
 const Module=React.memo(()=> {
@@ -54,13 +55,7 @@ const Module=React.memo(()=> {
                 fetchData();
         },[])
         
-        //log out functionality
-        const logout=((event)=>{
-                event.preventDefault();
-                localStorage.clear();
-                //setauthenticated(false);
-                routeChange("/");
-        })
+        
         
         //const [time,setTime]=useState({hours:"",minutes:"",seconds:""})
 
@@ -88,7 +83,7 @@ const Module=React.memo(()=> {
   return (
     <div className='container'><Navbar details={user}/>
      <div className='dashboard'>
-        <button id="logout" onClick={logout}>Log Out</button><br></br><br></br><br></br><hr/>
+        <Header/>
         {data<0?
                 <h2>No Modules assigned!</h2>:
                 (<div>

@@ -58,15 +58,6 @@ function Dashboard() {
                 fetchData();
         },[])
         
-        //log out functionality
-        const logout=(event)=>{
-                event.preventDefault();
-                localStorage.clear();
-                //console.log("bye");
-                //setauthenticated(false);
-                
-                routeChange("/");
-        }
         
         let data=-1;
         let rows=0;
@@ -90,7 +81,7 @@ function Dashboard() {
                         <div className='container'>
                                 <Navbar details={user}/>
                                 <div className='dashboard'>
-                                <button id="logout" onClick={logout}>Log Out</button><br></br><br></br><br></br><hr/>
+                                <Header/>
                                 {data<0?
                                 <h2>No Projects assigned!</h2>:
                                 (<div>
