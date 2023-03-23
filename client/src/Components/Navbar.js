@@ -3,50 +3,26 @@ import '../css/dashboard.css'
 import {Link} from 'react-router-dom'
 
 function Navbar(det) {
-  //const [image,setImage]=useState([]);
   
-  /*
-   const fetchData=async()=>{
-      btoa(encodeURIComponent(det.details.Image))
-      .then(res=>{
-        return res;
-      })
-      
-  }
-  console.log(Buffer.from(det.details.Image).toString('base64'));
-
-  
-  const img= fetchData();
-  //console.log(img);
-  
-
-  const response = det.details.Image;
-
-  const buffer =  response.arrayBuffer();
-const binaryString = Array.from(new Uint8Array(buffer), byte => String.fromCharCode(byte)).join("");
-const theImage = btoa(binaryString);
-console.log(theImage);
-
-
-function _arrayBufferToBase64( buffer ) {
-  var binary = '';
-  var bytes = new Uint8Array( buffer );
-  var len = bytes.byteLength;
-  for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode( bytes[ i ] );
-  }
-  return window.btoa( binary );
-}
-
-const data=_arrayBufferToBase64( det.details.Image.data )
-console.log(data);
-console.log(det.details.Image.data);
-*/
 const data=det.details;
 console.log(det.details);
+const [imageSrc, setImageSrc] = useState(null);
+
+var arrayBuffer=det.details.Image;
+useEffect(()=>{
+  const base64Image = btoa(
+          new Uint8Array(arrayBuffer).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ''
+          )
+        );
+        const imageUrl = `data:image/jpeg;base64,${base64Image}`;
+        setImageSrc(imageUrl);
+},[])
+
   return (
     <div className='navbar'>
-    <div className='photo'><img src=""></img></div>
+    <div className='photo'><img src={imageSrc} width="120" height={150} alt="img"/></div>
     <h2>{data.Name}</h2>
     <ul>
         <li><Link to='#user_profile'>My Profile</Link></li>

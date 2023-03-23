@@ -1,16 +1,9 @@
 import React from 'react';
-import {Routes, Route,useNavigate, Outlet } from 'react-router-dom';
-import Reset from './Reset';
+import {Outlet } from 'react-router-dom';
 import Login from './Login';
 
 const PrivateRoute = ({auth}) => {
-        const navigate = useNavigate();
-        const routeChange = (path) =>{  
-                navigate(path);
-              }
-              //console.log(element);
   return (
-    //console.log(auth)
         auth?<Outlet/>:<Login/>
         
   );

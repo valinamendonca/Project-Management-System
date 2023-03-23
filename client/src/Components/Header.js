@@ -10,9 +10,6 @@ function Header() {
         const logout=(event)=>{
                 event.preventDefault();
                 localStorage.clear();
-                //console.log("bye");
-                //setauthenticated(false);
-                
                 routeChange("/");
         }
   return (

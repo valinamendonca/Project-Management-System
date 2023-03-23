@@ -16,7 +16,6 @@ function Reset() {
     event.preventDefault();
     const email=event.target.email.value;
     setEmail(email)
-    console.log(email);
     axios.post("http://localhost:3001/emailSend",{email})
     .then((req,res)=>{
         if(req.statusText==="Email Found!"){
@@ -50,7 +49,7 @@ function Reset() {
             }
     })
     .catch(error=>{
-    console.log(error);
+      console.log(error);
     })
 }
 

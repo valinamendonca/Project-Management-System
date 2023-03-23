@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import {Alert} from 'react-alert';
-
 
 function ChangePassword() {
 
@@ -30,7 +28,7 @@ function ChangePassword() {
             }
     })
     .catch(error=>{
-    console.log(error);
+      console.log(error);
     })
   }
 

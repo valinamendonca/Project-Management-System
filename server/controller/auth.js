@@ -4,14 +4,11 @@ const con=require("../database/connect");
 const login=(req,res)=>{
         const {email,pass}=req.body;
         con.query("SELECT * FROM users where email='"+email+"'", function (err, result1, fields) {
-                //console.log(result1);
                 if (err) throw err;
                 else if(result1!=0){
                         con.query("select * from users where email='"+email+"' and password='"+pass+"'",function(err,result2){
-                                //console.log(result2);
                                 if (err) throw err;
                                 else if(result2!=0){
-                                        
                                         res.statusMessage="Logged in successfully!!!";
                                         res.send();
                                 }
@@ -59,7 +56,6 @@ const emailSend=(req,res)=>{
         }
 
         const email=req.body.email;
-        console.log(email);
         con.query("SELECT * FROM users where email='"+email+"'", function (err, result, fields) {
                 if(err) console.log(err);
                 else if(result!=0){
@@ -86,16 +82,12 @@ const verifyOtp=async(req,res)=>{
                 if(err) console.log(err);
                 else if(result!=0){
                         let currentTime=new Date().getTime();
-                        //console.log(currentTime);
-                        //console.log(data.expiry);
                         let diff=result.expiry-currentTime;
-                        //console.log(diff);
                         if(diff<0){
                                 res.statusMessage="Expired!"
                                 res.send();
                         }
                         else{
-                                //reg.findOneAndUpdate({email:req.body.email},{pass:req.body.pass})
                                 res.statusMessage="Otp Verified!"
                                 res.send();
                         }

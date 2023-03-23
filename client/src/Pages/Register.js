@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../css/login.css';
 import { Alert } from 'react-alert';
@@ -18,7 +18,6 @@ const submitHandler=(event)=>{
   const pass=event.target.pass.value;
   const confirm=event.target.confirm.value;
   const data={uname,email,pass,confirm};
-  //console.log(data);
   if(data){
     axios.post("/reg",data)
     .then((req,res)=>{
@@ -34,7 +33,6 @@ const submitHandler=(event)=>{
         routeChange()
       }
     })
-    //.then(routeChange())
     .catch(error=>{
       console.log(error);
     })
@@ -48,16 +46,16 @@ const submitHandler=(event)=>{
     <form method='POST' onSubmit={submitHandler}>
       <br></br>
       <table align='center'>
-      <tr><td><label>USERNAME </label></td><td><input name="uname" required/></td></tr><br></br>
-      <tr><td><label>EMAIL </label></td><td><input name="email" required /></td></tr><br></br>
-      <tr><td><label>PASSWORD </label></td><td><input name="pass" type="password" required/></td></tr><br></br>
-      <tr><td><label>CONFIRM PASSWORD </label></td><td><input type="password" name="confirm" required/></td></tr></table><br></br><br></br>
+        <tr><td><label>USERNAME </label></td><td><input name="uname" required/></td></tr><br></br>
+        <tr><td><label>EMAIL </label></td><td><input name="email" required /></td></tr><br></br>
+        <tr><td><label>PASSWORD </label></td><td><input name="pass" type="password" required/></td></tr><br></br>
+        <tr><td><label>CONFIRM PASSWORD </label></td><td><input type="password" name="confirm" required/></td></tr>
+      </table><br></br><br></br>
       <span><Link to="/"><u>Back to Login</u></Link></span><br></br><br></br>
       <button className='login-button' >Sign Up</button>
       </form>
     </div>
   )
 }
-
 
 export default Register;
