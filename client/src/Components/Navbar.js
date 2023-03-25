@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 function Navbar(det) {
   
 const data=det.details;
-console.log(det.details);
+//console.log(det.details);
 const [imageSrc, setImageSrc] = useState(null);
 
 var arrayBuffer=det.details.Image;
@@ -20,16 +20,17 @@ useEffect(()=>{
         setImageSrc(imageUrl);
 },[])
 
+var id=localStorage.getItem("id");
   return (
     <div className='navbar'>
     <div className='photo'><img src={imageSrc} width="120" height={150} alt="img"/></div>
     <h2>{data.Name}</h2>
     <ul>
         <li><Link to='#user_profile'>My Profile</Link></li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
         {data.project_manager?
-        <li><Link to="/projects">Manage Projects</Link></li>
+        <li><Link to={`/projects?id=${id}`}>Manage Projects</Link></li>
         :<li></li>}
-        <li></li>
     </ul>
     </div>
   )

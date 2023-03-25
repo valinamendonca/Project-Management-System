@@ -1,0 +1,21 @@
+.prj{
+        font-size: 18px;
+        width: 1200px;
+}
+
+.prj tr:hover{
+        background-color: lightgrey;
+}
+
+.prj td,th{
+        padding:10px;
+        border-bottom: 2px solid grey;
+}
+
+#create{
+        background-color: lightgrey;
+        float: left;
+        padding:10px;
+        width: 150px;
+        border-radius: 20px;
+}

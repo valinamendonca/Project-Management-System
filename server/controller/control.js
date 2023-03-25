@@ -59,4 +59,35 @@ const saveTime=(req,res)=>{
         })
 }
 
-module.exports={det,mod,saveTime}
+const projects=(req,res)=>{
+        var email=req.query.id;
+        con.query("select * from users where email='"+email+"'", function(err,result1){
+                if(err) console.log(err);
+                else{
+                        con.query("select * from project where creator="+result1[0].eid, function(err,result2){
+                                if(err) console.log(err);
+                                else if(result2.length!=0){
+                                        //console.log(result2.length);
+                                        const combinedResult={result1,result2}
+                                        const response=JSON.stringify(combinedResult);
+                                        res.send(response);
+                                }
+                                else{
+                                        res.statusMessage="No Projects!";
+                                        res.send(result1);
+                                }
+                        })
+                }
+        })
+}
+
+const userData=(req,res)=>{
+        var email=req.query.id;
+        con.query("select * from users where email='"+email+"'", function(err,result){
+                if(err) console.log(err);
+                else{
+                        res.send(result);
+                }
+        })
+}
+module.exports={det,mod,saveTime,projects,userData}

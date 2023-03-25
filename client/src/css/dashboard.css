@@ -10,6 +10,7 @@
         width: 1600px;
         position: relative;
         margin-right: 0px;
+        padding: 20px;
 }
 
 #logout{
@@ -22,6 +23,7 @@
         padding:25px;
         font-size: 20px;
         cursor: pointer;
+        width:220px
 }
 
 .photo{
@@ -62,6 +64,7 @@ li a{
 .card-bottom{
         padding:10px;
 }
+
 button{
         background-color: white;
         border:none;
