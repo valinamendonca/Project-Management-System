@@ -3,55 +3,31 @@ import '../css/dashboard.css'
 import axios from "axios";
 import Navbar from '../Components/Navbar'
 import Header from '../Components/Header'
-import { useDispatch } from "react-redux";
 import '../css/project.css'
 import { Link } from 'react-router-dom';
 
 function Project() {
   
-  const [user,setUser]=useState({});
   const [project,setProject]=useState({});
-  //const dispatch = useDispatch();
 
   //fetch data
   const fetchData=async(req,res)=>{
     const id=localStorage.getItem("id");
     return axios.get("http://localhost:3001/projects?id="+id)
     .then((req,res)=>{
-        if(req.statusText==="No Projects!"){
-          const result1=req.data[0];
-          setUser(result1);
-          //setFlag(false);
-        }
-        else{
-          //console.log(req.data.result2);
-          const result1=req.data.result1[0];
           const Project=req.data.result2;
-          setUser(result1);
+          //console.log(req.data);
           setProject(Project);
-          //setFlag(true);
-        }
-        //console.log("ok");
-    });        
+        })        
   }        
-
+//console.log(project);
   useEffect(()=>{
     fetchData();
   },[])
 
-  /*
-  useEffect(()=>{
-    if (store.getState().user) {
-      console.log(store.getState().user);
-    }
-    else{
-
-    }
-  },[])
-  */
     return (
       <div className='container'>
-      <Navbar details={user}/>
+      <Navbar/>
       <div className='dashboard'>
         <Header/>
         {!project.length?<>
@@ -60,8 +36,6 @@ function Project() {
         :
         <>
           <h1 align='left'>Your Projects</h1>
-          {/*
-          <button id="create">Add Project</button>*/}
           <Link id='create' style={{textDecoration:"none",color:"black",float: "left"}} to='/create'>Add Project</Link>
           <table className="prj" align='center'>
             <tbody>

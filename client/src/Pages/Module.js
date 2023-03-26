@@ -7,7 +7,6 @@ import Header from '../Components/Header';
 
 
 const Module=React.memo(()=> {        
-        const [user,setUser]=useState({});
         const [project,setProject]=useState({});
         const [flag,setFlag]=useState();
 
@@ -18,14 +17,10 @@ const Module=React.memo(()=> {
                 return axios.get("http://localhost:3001/module?id="+id+"&pid="+project_id)
                 .then((req,res)=>{
                         if(req.statusText==="No Modules!"){
-                                const result1=req.data[0];
-                                setUser(result1);
                                 setFlag(false);
                         }
                         else{
-                                const result1=req.data.result[0];
                                 const Project=req.data.result2;
-                                setUser(result1);
                                 setProject(Project);
                                 setFlag(true);
                         }
@@ -46,7 +41,7 @@ const Module=React.memo(()=> {
                 }
         }  
   return (
-    <div className='container'><Navbar details={user}/>
+    <div className='container'><Navbar/>
      <div className='dashboard'>
         <Header/>
         {data<0?

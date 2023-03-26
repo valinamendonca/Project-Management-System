@@ -16,6 +16,7 @@ router.post("/module",contr.saveTime)
 //project-manager
 router.get("/projects",contr.projects)
 router.get("/userData",contr.userData)
+router.get("/empList",contr.empList)
 
 
 //authentication

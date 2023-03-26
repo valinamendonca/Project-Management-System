@@ -6,22 +6,6 @@ import Navbar from '../Components/Navbar'
 import Header from '../Components/Header'
 
 function Create() {
-        const [user,setUser]=useState({});
-
-        //fetch data
-        const fetchData=async(req,res)=>{
-                const id=localStorage.getItem("id");
-                return axios.get("http://localhost:3001/userData?id="+id)
-                .then((req,res)=>{
-                        const result1=req.data[0];
-                        //console.log(result1);
-                        setUser(result1);
-                });        
-        }        
-        
-        useEffect(()=>{
-                fetchData();
-        },[])
 
         const submitHandler=(event)=>{
                 event.preventDefault();
@@ -36,7 +20,7 @@ function Create() {
         }
         return (
         <div className='container'>
-                <Navbar details={user}/>
+                <Navbar/>
                 <div align="left" className='dashboard'>
                         <Header/>
                         <h2>Enter the project details below:</h2>

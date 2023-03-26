@@ -90,4 +90,14 @@ const userData=(req,res)=>{
                 }
         })
 }
-module.exports={det,mod,saveTime,projects,userData}
+
+const empList=(req,res)=>{
+        con.query("select * from users",function(err,result){
+                if(err) console.log(err);
+                else{
+                        console.log(result);
+                        res.send(result);
+                }
+        })
+}
+module.exports={det,mod,saveTime,projects,userData,empList}

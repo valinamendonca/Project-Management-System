@@ -11,7 +11,6 @@ function Dashboard() {
                 navigate(path);
         }
 
-        const [user,setUser]=useState({});
         const [project, setProject]=useState({});
         const [flag,setFlag]=useState();
 
@@ -21,14 +20,10 @@ function Dashboard() {
                 return axios.get("http://localhost:3001/dashboard?id="+id)
                 .then((req,res)=>{
                         if(req.statusText==="No Projects Assigned!"){
-                                const result1=req.data[0];
-                                setUser(result1);
                                 setFlag(false);
                         }
                         else{
-                                const result1=req.data.result[0];
                                 const Project=req.data.result1;
-                                setUser(result1);
                                 setProject(Project);
                                 setFlag(true);
                         }
@@ -53,13 +48,22 @@ function Dashboard() {
                                 localStorage.setItem("project_id",data);
                                 routeChange("/module");
                         }
-                        rows.push(<div key={i} className='card'><div className='card-top'><b>{project[i].pid}</b><b>{project[i].name}</b><br/><br/><i>Created by: </i><b></b></div><div className='card-bottom'><button data-my-data={project[i].pid} onClick={(e)=>{mod(e)}}>Start</button></div></div>
+                        rows.push(
+                                <div key={i} className='card'>
+                                        <div className='card-top'>
+                                                <b>{project[i].pid}</b><b>{project[i].name}</b><br/><br/>
+                                                <i>Created by: </i><b></b>
+                                        </div>
+                                        <div className='card-bottom'>
+                                                <button data-my-data={project[i].pid} onClick={(e)=>{mod(e)}}>Start</button>
+                                        </div>
+                                </div>
                         )
                 }
         }    
         return (
                         <div className='container'>
-                                <Navbar details={user}/>
+                                <Navbar/>
                                 <div className='dashboard'>
                                 <Header/>
                                 {data<0?
