@@ -14,8 +14,13 @@
 
 #create{
         background-color: lightgrey;
-        float: left;
         padding:10px;
         width: 150px;
         border-radius: 20px;
+}
+
+input{
+        border: none;
+        border-bottom: 2px solid black;
+        
 }

@@ -62,7 +62,7 @@ function Project() {
           <h1 align='left'>Your Projects</h1>
           {/*
           <button id="create">Add Project</button>*/}
-          <Link id='create' style={{textDecoration:"none",color:"black"}} to='/create'>Add Project</Link>
+          <Link id='create' style={{textDecoration:"none",color:"black",float: "left"}} to='/create'>Add Project</Link>
           <table className="prj" align='center'>
             <tbody>
               <tr><th>Project Id</th><th>Project Name</th><th>Edit</th><th>Delete</th></tr>

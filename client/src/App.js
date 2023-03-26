@@ -7,8 +7,9 @@ import ChangePassword from './Pages/ChangePassword'
 import Dashboard from './Pages/Dashboard'
 import Module from './Pages/Module';
 import Project from './Pages/Project'
-import PrivateRoute from './Pages/PrivateRoute';
+import PrivateRoute from './Pages/PrivateRoute'
 import Create from './Pages/Create';
+import Employee from './Pages/Employee'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route exact path='/module' element={<Module/>}/>
           <Route path='/projects' element={<Project/>}/>
           <Route path='/create' element={<Create/>} />
+          <Route path='/addEmployee' element={<Employee/>}/>
         </Route>
         <Route path='*' element={<PageNotFound/>}/>
       </Routes>
