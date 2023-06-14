@@ -7,7 +7,7 @@ function Mod(props) {
         var project=props.project;
         //console.log(project);
 
-let completedTimeComponents=(project[i].Completed_Time).match(/(\d{2}):(\d{2}):(\d{2})/);
+let completedTimeComponents=(project.result1[i].Completed_Time).match(/(\d{2}):(\d{2}):(\d{2})/);
 
 const [hours, setHours] = useState(parseInt(completedTimeComponents[1]));
 const [minutes, setMinutes] = useState(parseInt(completedTimeComponents[2]));
@@ -16,7 +16,7 @@ const [isRunning, setIsRunning] = useState(false);
 const intervalRef = useRef(null);
 
 
-var mod_id=props.project[i].module_id;
+var mod_id=props.project.result1[i].module_id;
         
 const saveTime=()=>{
         if(isRunning ){
@@ -24,7 +24,7 @@ const saveTime=()=>{
           var min=minutes < 10 ? `0${minutes}` : minutes;
           var hr=hours < 10 ? `0${hours}` : hours;
           var Completed_Time=hr+":"+min+":"+second;
-          const data={mod_id,Completed_Time}
+          //const data={mod_id,Completed_Time}
           axios.post("http://localhost:3001/module?mod_id="+mod_id,{Completed_Time})
         }
 }
@@ -60,8 +60,8 @@ function startTimer() {
   return (
         
     <div><div className='card'><div className='card-top'>
-        <b style={{fontSize:"20px"}}>{project[i].name}</b><br/><br/>
-        <i>Estimated time: </i><b>{project[i].est_Time}</b><br/>
+        <b style={{fontSize:"20px"}}>{project.result1[i].name}</b><br/><br/>
+        <i>Estimated time: </i><b>{project.result1[i].est_time}</b><br/>
         <i>Completed Time: </i>
         <b>
                         

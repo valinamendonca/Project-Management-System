@@ -23,7 +23,7 @@ function Dashboard() {
                                 setFlag(false);
                         }
                         else{
-                                const Project=req.data.result1;
+                                const Project=req.data;
                                 setProject(Project);
                                 setFlag(true);
                         }
@@ -40,7 +40,7 @@ function Dashboard() {
         let data=-1;
         let rows=0;
         if(flag){
-                data=project?.length;
+                data=project.result1?.length;
                 rows=[];
                 for(let i=0;i<data;i++){
                         const mod=(event)=>{
@@ -49,13 +49,13 @@ function Dashboard() {
                                 routeChange("/module");
                         }
                         rows.push(
-                                <div key={i} className='card'>
+                                <div style={{backgroundColor:'white'}} key={i} className='card'>
                                         <div className='card-top'>
-                                                <b>{project[i].pid}</b><b>{project[i].name}</b><br/><br/>
-                                                <i>Created by: </i><b></b>
+                                                <b>{project.result1[i].project_id}</b><b>{project.result1[i].project_name}</b><br/><br/>
+                                                <i>Created by: </i><b>{project.result[0].Name}</b>
                                         </div>
                                         <div className='card-bottom'>
-                                                <button data-my-data={project[i].pid} onClick={(e)=>{mod(e)}}>Start</button>
+                                                <button data-my-data={project.result1[i].project_id} onClick={(e)=>{mod(e)}}>Start</button>
                                         </div>
                                 </div>
                         )
@@ -64,7 +64,7 @@ function Dashboard() {
         return (
                         <div className='container'>
                                 <Navbar/>
-                                <div className='dashboard'>
+                                <div style={{backgroundColor:'white'}} className='dashboard'>
                                 <Header/>
                                 {data<0?
                                         <h2>No Projects assigned!</h2>:

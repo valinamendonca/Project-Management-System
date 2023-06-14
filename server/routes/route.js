@@ -17,6 +17,10 @@ router.post("/module",contr.saveTime)
 router.get("/projects",contr.projects)
 router.get("/userData",contr.userData)
 router.get("/empList",contr.empList)
+router.post("/createProject",contr.createProject)
+router.delete("/deleteProject",contr.deleteProject)
+router.get("/editProject",contr.edit)
+router.put("/editProjects",contr.editProject)
 
 
 //authentication

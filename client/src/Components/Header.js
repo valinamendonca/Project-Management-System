@@ -13,7 +13,7 @@ function Header() {
                 routeChange("/");
         }
   return (
-    <div className='head'><button id="logout" onClick={logout}>Log Out</button><br></br><br></br><br></br><hr/></div>
+    <div style={{backgroundColor:'#0C134F', borderLeft:"1px solid white"}} className='head'><button id="logout" onClick={logout}>Log Out</button><br></br><br></br><br></br><hr/></div>
   )
 }
 

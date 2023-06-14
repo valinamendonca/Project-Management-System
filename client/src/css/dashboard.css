@@ -10,22 +10,32 @@
         width: 1600px;
         position: relative;
         margin-right: 0px;
-        padding: 20px;
+        padding: 0px;
 }
 
 #logout{
         right:0;
         position: absolute;
         display: block;
-        background-color: white;
+        background-color: #0C134F;
         border: none;
         height: 10px;
         padding:25px;
         font-size: 20px;
         cursor: pointer;
-        width:220px
+        width:220px;
+        color: white;
 }
 
+<<<<<<< Updated upstream
+=======
+.head{
+        /*background-color: #0C134F;*/
+        margin:0;
+        /*width:100vw;*/
+}
+
+>>>>>>> Stashed changes
 .photo{
         border: 2px solid black;
         width: 120px;
@@ -44,14 +54,14 @@ li a{
 }
 .navbar{
         width: 300px;
-        height: 710px;
+        height: 100vh;
         border:1px dotted black;
         border-left: 0;
         background-color: white;
 }
 
 .card{
-        width: 250px;
+        max-width: 300px;
         margin:50px;
         border:2px solid grey;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -60,6 +70,9 @@ li a{
 .card-top{
         border-bottom: 2px solid grey;
         padding: 20px;
+        height: auto;
+        max-height: fit-content;
+        min-height: 100px;
 }
 .card-bottom{
         padding:10px;
@@ -70,5 +83,5 @@ button{
         border:none;
         font-size: 16px;
         cursor: pointer;
-        width:220px;
+        width:200px;
 }

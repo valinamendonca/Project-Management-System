@@ -4,8 +4,9 @@ const cors=require("cors");
 const bodyParser=require("body-parser");
 
 //middleware
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }))
+app.use(bodyParser.json({ limit: '10mb' }))
+
 //app.use(cookieParser())
 
 //declaring a routes 

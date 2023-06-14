@@ -3,10 +3,10 @@ const con=require("../database/connect");
 //login 
 const login=(req,res)=>{
         const {email,pass}=req.body;
-        con.query("SELECT * FROM users where email='"+email+"'", function (err, result1, fields) {
+        con.query("SELECT * FROM employee where email='"+email+"'", function (err, result1, fields) {
                 if (err) throw err;
                 else if(result1!=0){
-                        con.query("select * from users where email='"+email+"' and password='"+pass+"'",function(err,result2){
+                        con.query("select * from employee where email='"+email+"' and password='"+pass+"'",function(err,result2){
                                 if (err) throw err;
                                 else if(result2!=0){
                                         res.statusMessage="Logged in successfully!!!";
@@ -56,7 +56,7 @@ const emailSend=(req,res)=>{
         }
 
         const email=req.body.email;
-        con.query("SELECT * FROM users where email='"+email+"'", function (err, result, fields) {
+        con.query("SELECT * FROM employee where email='"+email+"'", function (err, result, fields) {
                 if(err) console.log(err);
                 else if(result!=0){
                         let otpCode=Math.floor((Math.random()*10000+1));
@@ -106,7 +106,7 @@ const changePassword=async(req,res)=>{
                 res.statusMessage="Different"
                 res.send();
         };
-        con.query("UPDATE users SET password ='"+req.body.pass+"' WHERE email ='"+req.body.email+"'",function(err,result){
+        con.query("UPDATE employee SET password ='"+req.body.pass+"' WHERE email ='"+req.body.email+"'",function(err,result){
                 if(err) console.log(err);
                 else if(result!=0){
                         res.statusMessage="Successful"

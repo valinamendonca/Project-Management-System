@@ -20,7 +20,7 @@ const Module=React.memo(()=> {
                                 setFlag(false);
                         }
                         else{
-                                const Project=req.data.result2;
+                                const Project=req.data;
                                 setProject(Project);
                                 setFlag(true);
                         }
@@ -34,7 +34,7 @@ const Module=React.memo(()=> {
         let data=-1;
         let rows=0;
         if(flag){
-                data=project?.length;
+                data=project.result1?.length;
                 rows=[];
                 for(let i=0;i<data;i++){
                         rows.push(<Mod key={i} i={i} project={project}/>)
