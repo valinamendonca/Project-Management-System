@@ -41,18 +41,6 @@ useEffect(()=>{
 
 var id=localStorage.getItem("id");
   return (
-<<<<<<< Updated upstream
-    <div className='navbar'>
-    <div className='photo'><img src={imageSrc} width="120" height={150} alt="img"/></div>
-    <h2>{user.Name}</h2>
-    <ul>
-        <li><Link to='#user_profile'>My Profile</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
-        {user.project_manager?
-        <li><Link to={`/projects?id=${id}`}>Manage Projects</Link></li>
-        :<li></li>}
-    </ul>
-=======
     <div style={{backgroundColor: '#0C134F',color:'white'}} className='navbar'>
       <div className='photo'><img src={imageSrc} width="120" height={150} alt="img"/></div>
       <h2>{user.Name}</h2>
@@ -64,7 +52,6 @@ var id=localStorage.getItem("id");
           :<li></li>}
       </ul>
         
->>>>>>> Stashed changes
     </div>
   )
 }

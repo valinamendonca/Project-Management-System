@@ -13,9 +13,13 @@ const Login=()=> {
 
 useEffect(()=>{
   if(localStorage.getItem("authenticated")!=null){
-    routeChange("/dashboard")
+    if(localStorage.getItem("id")==="admin"){
+      routeChange("/adminDashboard");
+    }
+    else{
+      routeChange("/dashboard")
+    }
   }
-
 },[])
 
   const submitHandler=(event)=>{
@@ -31,6 +35,11 @@ useEffect(()=>{
             localStorage.setItem("authenticated",true);
             routeChange("/dashboard");
             window.location.reload(false)
+          }
+          else if(req.statusText=="Admin"){
+            localStorage.setItem("id","admin")
+            localStorage.setItem("authenticated",true);
+            routeChange("/adminDashboard");
           }
           else if(req.statusText==="Wrong credentials!")
             alert("Wrong credentials!")

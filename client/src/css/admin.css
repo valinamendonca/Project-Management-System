@@ -1,0 +1,53 @@
+.navbar{
+        width: 250px;
+        border:1px dotted black;
+        border-left: 0;
+        background-color: white;
+}
+
+.admin-container {
+        display: flex; /* Use flexbox for the container */
+        flex-direction: row;
+        height: 100vh;
+}
+.main {
+        flex-grow: 1; /* Allow the main content to grow and take up remaining space */
+        padding: 20px;
+}
+.head{
+        height: 70px;
+        border-bottom:1px solid white;
+}
+.status{
+        display: flex;
+        flex-direction: row;
+        background-color: lightgrey;
+        border-radius: 20px;
+        padding: 20px;
+}
+.totalEmp, .totalProj, .complete, .ongoing{
+        height:150px;
+        flex: 1;
+        margin:10px;
+        border-radius: 20px;
+        font-size: 20px;
+        color: white;
+        padding:10px;
+        background-color: #4942E4;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}   
+.bold{
+        font-weight: 100;
+}
+th,td{
+        padding:10px;
+        border-bottom: 2px solid grey;
+}
+
+input {
+        font-size:20px;
+}
+i.stat-icon{
+        font-size: 100px;
+        float: left;
+}

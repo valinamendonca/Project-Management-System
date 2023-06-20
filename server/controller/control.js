@@ -158,12 +158,16 @@ const edit=(req,res)=>{
 const editProject=(req,res)=>{
         //console.log(req.body.project.project_id);
         const data=req.body;
+        //console.log(data);
         const id=req.body.project.project_id;
+        //console.log(id);
         //console.log("new data: "+data.modules);
         //const fieldsToUpdate={};
-        con.query("SELECT * FROM project JOIN module ON project.project_id = module.project_id JOIN project_employee ON project.project_id = project_employee.project_id WHERE project.project_id ="+id,function(err1,res1){
+        con.query("SELECT * FROM project LEFT JOIN module ON project.project_id = module.project_id LEFT JOIN project_employee ON project.project_id = project_employee.project_id WHERE project.project_id ="+id,function(err1,res1){
                 if(err1) console.log(err1);
                 else{
+                        console.log(res1);
+                        console.log(res1[0].project_name);
                         //console.log("old data:"+res1[0]);
                         if (data.project.project_name && data.project.project_name !== res1[0].project_name) {
                                 con.query("UPDATE `project` SET `project_name`='"+data.project.project_name+"' WHERE `project_id`="+id,function(err2,res2){
@@ -186,9 +190,6 @@ const editProject=(req,res)=>{
                                         if(err4) console.log(err4);
                                 })
                         })
-
-
-
                         const changedData = [];
                         const newDataWithoutModuleId = [];
                         const removedData=[];
@@ -262,8 +263,10 @@ const editProject=(req,res)=>{
                         })
                 }
                 //console.log("working");
-                res.send("Success");
+                res.statusMessage="Success";
+                res.send();
         })
+        res.send();
 }
 
 module.exports={det,mod,saveTime,projects,userData,empList,createProject,deleteProject,edit,editProject}

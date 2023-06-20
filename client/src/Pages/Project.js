@@ -84,9 +84,9 @@ function Project() {
           <Link id='create' style={{textDecoration:"none",color:"black",float: "left"}} to='/create'>Add Project</Link>
           <table className="prj" align='center'>
             <tbody>
-              <tr><th>Project Id</th><th>Project Name</th><th>Actions</th><th>Delete</th></tr>
+              <tr><th>Project Id</th><th>Project Name</th><th colSpan={2}>Actions</th></tr>
               {project.map(data=>(
-                <tr key={data.project_id}><td>{data.project_id}</td><td>{data.project_name}</td><td><Link to={`/edit/${data.project_id}`}><i className="fa fa-pencil"></i></Link></td><td><i className="fa fa-trash-o" onClick={()=>openModal(data.project_id)}></i></td></tr>
+                <tr key={data.project_id}><td>{data.project_id}</td><td>{data.project_name}</td><td ><Link to={`/edit/${data.project_id}`}><i  className="fa fa-pencil"></i></Link></td><td><i className="fa fa-trash-o" onClick={()=>openModal(data.project_id)}></i></td></tr>
               )
 
               )}

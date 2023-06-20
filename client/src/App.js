@@ -11,6 +11,9 @@ import PrivateRoute from './Pages/PrivateRoute';
 import Create from './Pages/Create';
 import Employee from './Pages/Employee';
 import Edit from './Pages/Edit';
+import Admin from './Pages/Admin'
+import User from './Pages/User'
+import Register from './Pages/Register'
 
 
 function App() {
@@ -28,6 +31,7 @@ function App() {
      <Router>
       <Routes>
         <Route exact path="/" element={<Login/>} />
+        <Route exact path='/register' element={<Register/>} />
         <Route path="/reset" element={<Reset/>} />
         <Route path="/changePassword" element={<ChangePassword/>} />
         <Route element={<PrivateRoute auth={authen}/>}>
@@ -37,6 +41,8 @@ function App() {
           <Route path='/create' element={<Create/>} />
           <Route path='/addEmployee' element={<Employee/>}/>
           <Route path='/edit/:id' element={<Edit/>}/>
+          <Route path='/adminDashboard' element={<Admin/>}/>
+          <Route path='/users' element={<User/>}/>
         </Route>
         <Route path='*' element={<PageNotFound/>}/>
       </Routes>

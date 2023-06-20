@@ -75,6 +75,7 @@ function Edit() {
           setSelectedModule(updatedModule);
           setEditModule(false);
         };
+
         const handleChange = (event) => {
           const { name, value, type, checked } = event.target;
           if (type === 'checkbox') {
@@ -89,6 +90,7 @@ function Edit() {
             }));
           }
         };
+        
         const handleModuleEdit=(moduleId)=>{
           const moduleData=data.modules.find((module) => module.module_id === moduleId);
           setSelectedModule(moduleData);
@@ -176,7 +178,8 @@ function Edit() {
           return axios.put('http://localhost:3001/editProjects', data)
           .then(response => {
             //console.log(response);
-            routeChange("/projects");
+            //routeChange("/projects");
+            window.location.href = "/projects";
           })
           .catch(error => {
             // Handle error

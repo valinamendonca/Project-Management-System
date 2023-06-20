@@ -52,7 +52,7 @@ function Dashboard() {
                                 <div style={{backgroundColor:'white'}} key={i} className='card'>
                                         <div className='card-top'>
                                                 <b>{project.result1[i].project_id}</b><b>{project.result1[i].project_name}</b><br/><br/>
-                                                <i>Created by: </i><b>{project.result[0].Name}</b>
+                                                <i style={{fontSize:"16px"}}>Created by: </i><b>{project.result[0].Name}</b>
                                         </div>
                                         <div className='card-bottom'>
                                                 <button data-my-data={project.result1[i].project_id} onClick={(e)=>{mod(e)}}>Start</button>

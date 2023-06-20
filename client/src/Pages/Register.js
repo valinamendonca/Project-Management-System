@@ -19,7 +19,7 @@ const submitHandler=(event)=>{
   const confirm=event.target.confirm.value;
   const data={uname,email,pass,confirm};
   if(data){
-    axios.post("/reg",data)
+    axios.post("http://localhost:3001/reg",data)
     .then((req,res)=>{
       console.log(req);
       if(req.statusText==="Email Id already exists!")

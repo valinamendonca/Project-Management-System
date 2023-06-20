@@ -61,8 +61,8 @@ function startTimer() {
         
     <div><div className='card'><div className='card-top'>
         <b style={{fontSize:"20px"}}>{project.result1[i].name}</b><br/><br/>
-        <i>Estimated time: </i><b>{project.result1[i].est_time}</b><br/>
-        <i>Completed Time: </i>
+        <i style={{fontSize:"16px"}}>Estimated time: </i><b>{project.result1[i].est_time}</b><br/>
+        <i style={{fontSize:"16px"}}>Completed Time: </i>
         <b>
                         
     <span>{hours < 10 ? `0${hours}` : hours}</span>:

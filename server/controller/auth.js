@@ -1,11 +1,44 @@
 const con=require("../database/connect");
+const bcrypt= require("bcrypt");
+
+//register
+const reg=()=>{
+
+}
 
 //login 
 const login=(req,res)=>{
+        console.log(req.body);
         const {email,pass}=req.body;
-        con.query("SELECT * FROM employee where email='"+email+"'", function (err, result1, fields) {
+        //console.log(password);
+        con.query("SELECT password FROM employee where email='"+email+"'", function (err, result1, fields) {
+                //console.log(result1);
                 if (err) throw err;
-                else if(result1!=0){
+                else if(result1.length>0){
+                        const hashedPassword = result1[0].password;
+                        // Compare the entered password with the hashed password
+                        //console.log(password);
+                        //console.log(hashedPassword);
+                        bcrypt.compare(pass, hashedPassword, function(err, match) {
+                                //console.log(password);
+                                //console.log(hashedPassword);
+                                if (err) {
+                                console.error('Error comparing passwords:', err);
+                                res.statusMessage = "Error";
+                                return res.send();
+                                }
+
+                                if (match) {
+                                // Passwords match, login successful
+                                res.statusMessage = "Logged in successfully!!!";
+                                res.send();
+                                } else {
+                                // Passwords don't match, login failed
+                                res.statusMessage = "Wrong credentials!";
+                                res.send();
+                                }
+                        });
+                        /*
                         con.query("select * from employee where email='"+email+"' and password='"+pass+"'",function(err,result2){
                                 if (err) throw err;
                                 else if(result2!=0){
@@ -17,7 +50,12 @@ const login=(req,res)=>{
                                         res.send();
                                 }
                         })
+                        */
                         
+                }
+                else if(email=="admin" && pass=="admin"){
+                        res.statusMessage="Admin";
+                        res.send();
                 }
                 else{
                         res.statusMessage="User does not exist!!!";
@@ -106,17 +144,33 @@ const changePassword=async(req,res)=>{
                 res.statusMessage="Different"
                 res.send();
         };
-        con.query("UPDATE employee SET password ='"+req.body.pass+"' WHERE email ='"+req.body.email+"'",function(err,result){
-                if(err) console.log(err);
-                else if(result!=0){
-                        res.statusMessage="Successful"
-                        res.send();
+        // Generate a salt with a cost factor of 10
+        bcrypt.genSalt(10, function(err, salt) {
+                if (err) {
+                console.error('Error generating salt:', err);
+                res.statusMessage = "Error";
+                return res.send();
                 }
-                else{
-                        res.statusMessage="Error"
-                        res.send();
-                }
+                // Hash the password using the salt
+                bcrypt.hash(req.body.pass, salt, function(err, hash) {
+                        if (err) {
+                                console.error('Error hashing password:', err);
+                                res.statusMessage = "Error";
+                                return res.send();
+                        }
+                        con.query("UPDATE employee SET password ='"+hash+"' WHERE email ='"+req.body.email+"'",function(err,result){
+                                if(err) console.log(err);
+                                else if(result!=0){
+                                        res.statusMessage="Successful"
+                                        res.send();
+                                }
+                                else{
+                                        res.statusMessage="Error"
+                                        res.send();
+                                }
+                        })
+                })
         })
 }
 
-module.exports={login,emailSend,verifyOtp,changePassword}
+module.exports={login,emailSend,verifyOtp,changePassword,reg}
