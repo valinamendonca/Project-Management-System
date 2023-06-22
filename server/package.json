@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e js,html "
+    "start": "node -e js,html ",
+    "dev": "nodemon -e js,html "
   },
   "author": "valina",
   "license": "ISC",
