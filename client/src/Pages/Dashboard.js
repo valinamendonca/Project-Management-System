@@ -17,7 +17,10 @@ function Dashboard() {
         //fetch data
         const fetchData=async(req,res)=>{
                 const id=localStorage.getItem("id");
-                return axios.get("http://localhost:3001/dashboard?id="+id)
+                const backendUrl =process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+      : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                return axios.get(`${backendUrl}/dashboard?id=`+id)
                 .then((req,res)=>{
                         if(req.statusText==="No Projects Assigned!"){
                                 setFlag(false);

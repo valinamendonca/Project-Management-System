@@ -16,7 +16,10 @@ function Reset() {
     event.preventDefault();
     const email=event.target.email.value;
     setEmail(email)
-    axios.post("http://localhost:3001/emailSend",{email})
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    axios.post(`${backendUrl}/emailSend`,{email})
     .then((req,res)=>{
         if(req.statusText==="Email Found!"){
           alert("Otp is sent to your Email Address!")
@@ -34,7 +37,10 @@ function Reset() {
   const submitHandler=async(event)=>{
     event.preventDefault();
     const otp=event.target.otp.value;
-    await axios.post("http://localhost:3001/verifyOtp",{email,otp})
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    await axios.post(`${backendUrl}/verifyOtp`,{email,otp})
     .then((req,res)=>{
             if(req.statusText==="Expired!"){
               alert("Otp expired! Try Again.");

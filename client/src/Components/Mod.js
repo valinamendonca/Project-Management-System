@@ -25,7 +25,10 @@ const saveTime=()=>{
           var hr=hours < 10 ? `0${hours}` : hours;
           var Completed_Time=hr+":"+min+":"+second;
           //const data={mod_id,Completed_Time}
-          axios.post("http://localhost:3001/module?mod_id="+mod_id,{Completed_Time})
+          const backendUrl =process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+      : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+          axios.post(`${backendUrl}/module?mod_id=`+mod_id,{Completed_Time})
         }
 }
 

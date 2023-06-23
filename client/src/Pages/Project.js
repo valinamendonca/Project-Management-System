@@ -45,7 +45,10 @@ function Project() {
   //fetch data
   const fetchData=async(req,res)=>{
     const id=localStorage.getItem("id");
-    return axios.get("http://localhost:3001/projects?id="+id)
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    return axios.get(`${backendUrl}/projects?id=`+id)
     .then((req,res)=>{
           const Project=req.data.result2;
           setProject(Project);
@@ -57,7 +60,10 @@ function Project() {
   },[])
 
   const deleteProject=(project_id)=>{
-    axios.delete("http://localhost:3001/deleteProject?id="+project_id)
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    axios.delete(`${backendUrl}/deleteProject?id=`+project_id)
     .then((req,res) => {
       if(req.data=="Deleted"){
         closeModal();

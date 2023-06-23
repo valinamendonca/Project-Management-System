@@ -59,7 +59,10 @@ function User() {
                         designation: designation,
                         role: role                      
                 }; 
-                return axios.post('http://localhost:3001/addUser', data)
+                const backendUrl =process.env.NODE_ENV === 'development'
+                ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+                : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                return axios.post(`${backendUrl}/addUser`, data)
                 .then(response => {
                         console.log(response);
                         closeModal();
@@ -118,7 +121,10 @@ function User() {
         const handleSubmit = (event) => {
                 event.preventDefault(); // Prevents the default form submission behavior
                 console.log(selectedEmp);
-                return axios.put('http://localhost:3001/editUser', selectedEmp)
+                const backendUrl =process.env.NODE_ENV === 'development'
+                ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+                : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                return axios.put(`${backendUrl}/editUser`, selectedEmp)
                 .then(response => {
                         closeModal();
                         window.location.reload();
@@ -144,7 +150,10 @@ function User() {
 
         //delete Employee
         const deleteEmp=(eid)=>{
-                axios.delete("http://localhost:3001/deleteEmp?id="+eid)
+                const backendUrl =process.env.NODE_ENV === 'development'
+                ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+                : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                axios.delete(`${backendUrl}/deleteEmp?id=`+eid)
                 .then((req,res) => {
                   if(req.data=="Deleted"){
                     closeModal();
@@ -158,7 +167,10 @@ function User() {
 
         //fetch data
         const fetchData=async()=>{
-                return axios.get("http://localhost:3001/users")
+                const backendUrl =process.env.NODE_ENV === 'development'
+                ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+                : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                return axios.get(`${backendUrl}/users`)
                 .then((req,res)=>{
                         if(req.statusText==="None"){
                                 setUsers(false);

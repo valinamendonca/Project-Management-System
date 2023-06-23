@@ -14,7 +14,10 @@ const Module=React.memo(()=> {
         const fetchData=async()=>{
                 const id=localStorage.getItem("id");
                 const project_id=localStorage.getItem("project_id");
-                return axios.get("http://localhost:3001/module?id="+id+"&pid="+project_id)
+                const backendUrl =process.env.NODE_ENV === 'development'
+                ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+                : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                return axios.get(`${backendUrl}/module?id=`+id+`&pid=`+project_id)
                 .then((req,res)=>{
                         if(req.statusText==="No Modules!"){
                                 setFlag(false);

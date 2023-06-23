@@ -16,10 +16,12 @@ app.use('/', require('./routes/route'));
 //Db Connection
 const con = require("./database/connect");
 con.connect(function(err) {
-        if (err) console.log(err);;
-        console.log("Connected!");
+        if (err) console.log(err);
+        else
+                console.log("Connected!");
       });
 
-app.listen(3001,()=>{
-        console.log(`Server listening at http://localhost:3001`);
+const port = process.env.PORT || 3001;
+app.listen(port,()=>{
+        console.log(`Server listening at ${port}`);
 })

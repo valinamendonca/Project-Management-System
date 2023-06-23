@@ -19,7 +19,10 @@ const submitHandler=(event)=>{
   const confirm=event.target.confirm.value;
   const data={uname,email,pass,confirm};
   if(data){
-    axios.post("http://localhost:3001/reg",data)
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    axios.post(`${backendUrl}/reg`,data)
     .then((req,res)=>{
       console.log(req);
       if(req.statusText==="Email Id already exists!")

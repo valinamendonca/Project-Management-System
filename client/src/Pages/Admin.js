@@ -14,7 +14,10 @@ function Admin() {
 
   //fetch data
   const fetchData=async()=>{
-    return axios.get("http://localhost:3001/stats")
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    return axios.get(`${backendUrl}/stats`)
     .then((req,res)=>{
             console.log(req.data);
             setData(req.data);

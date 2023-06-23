@@ -7,7 +7,10 @@ function Employee() {
   const [emp,setEmp]=useState({});
   const [img,setImg]=useState();
   const fetchData=async ()=>{
-    const req = await axios.get("http://localhost:3001/empList");
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    const req = await axios.get(`${backendUrl}/empList`);
     console.log(req.data);
     setEmp(req.data);
   }

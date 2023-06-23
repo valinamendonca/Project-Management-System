@@ -151,7 +151,10 @@ function Edit() {
                 
         }
         const fetchEmp=async ()=>{
-                return axios.get("http://localhost:3001/empList")
+          const backendUrl =process.env.NODE_ENV === 'development'
+          ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+          : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                return axios.get(`${backendUrl}/empList`)
                 .then(response => response.data)
                 .catch(error => {
                 console.log('Error fetching employees:', error);
@@ -175,7 +178,10 @@ function Edit() {
               
         //on saving overall changes
         const formHandler=async()=>{
-          return axios.put('http://localhost:3001/editProjects', data)
+          const backendUrl =process.env.NODE_ENV === 'development'
+          ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+          : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+          return axios.put(`${backendUrl}/editProjects`, data)
           .then(response => {
             //console.log(response);
             //routeChange("/projects");
@@ -193,7 +199,10 @@ function Edit() {
         const fetchData=async (id)=>{
                 // Fetch data from the database based on the provided ID
                 try {
-                        const data = await axios.get("http://localhost:3001/editProject?id=" + id);
+                  const backendUrl =process.env.NODE_ENV === 'development'
+                  ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+                  : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                        const data = await axios.get(`${backendUrl}/editProject?id=` + id);
                         // Set the retrieved data as the initial form values
                         setData({
                                 project: data.data.result[0],

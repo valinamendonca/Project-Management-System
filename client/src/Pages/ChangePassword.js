@@ -14,7 +14,10 @@ function ChangePassword() {
     const email=event.target.email.value;
     const pass=event.target.pass.value;
     const confirm=event.target.confirm.value;
-    await axios.post("http://localhost:3001/changePassword",{email,pass,confirm})
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    await axios.post(`${backendUrl}/changePassword`,{email,pass,confirm})
     .then((req,res)=>{
             if(req.statusText==="Different"){
               alert("Passwords do not match.");

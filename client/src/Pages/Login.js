@@ -28,7 +28,10 @@ useEffect(()=>{
       const pass=event.target.pass.value;
       const user_data={email,pass};
       if(user_data){
-        axios.post("http://localhost:3001/login",user_data)
+        const backendUrl =process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+      : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+        axios.post(`${backendUrl}/login`,user_data)
         .then((req,res)=>{
           if(req.statusText==="Logged in successfully!!!"){
             localStorage.setItem("id",email)

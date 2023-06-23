@@ -62,7 +62,10 @@ function Create() {
           const prjData={pname,modname,time,employeeList};
           if(prjData){
                   const id=localStorage.getItem("id");
-                  axios.post("http://localhost:3001/createProject?id="+id,prjData)
+                  const backendUrl =process.env.NODE_ENV === 'development'
+                  ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+                  : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+                  axios.post(`${backendUrl}/createProject?id=`+id,prjData)
                   .then((req,res)=>{
                     if(req.data==="Success"){
                       routeChange("/projects");
@@ -75,7 +78,10 @@ function Create() {
   }
 
   const fetchEmp=async ()=>{
-    return axios.get("http://localhost:3001/empList")
+    const backendUrl =process.env.NODE_ENV === 'development'
+    ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+    : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+    return axios.get(`${backendUrl}/empList`)
     .then(response => response.data)
     .catch(error => {
       console.log('Error fetching employees:', error);

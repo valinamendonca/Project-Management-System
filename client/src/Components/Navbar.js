@@ -12,7 +12,10 @@ const [user,setUser]=useState({});
 //fetch data
 const fetchData=async(req,res)=>{
   const id=localStorage.getItem("id");
-  return axios.get("http://localhost:3001/userData?id="+id)
+  const backendUrl =process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_BACKEND_URL_DEVELOPMENT
+      : process.env.REACT_APP_BACKEND_URL_PRODUCTION;
+  return axios.get(`${backendUrl}/userData?id=`+id)
   .then((req,res)=>{
           const result=req.data[0];
           setUser(result);
