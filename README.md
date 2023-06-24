@@ -11,9 +11,9 @@ Before setting up the project, ensure that you have the following prerequisites 
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository, open cmd
    
-` git clone  `
+` git clone  https://github.com/valinamendonca/project-management-system.git `
 
 2. Open 2 terminals and navigate to client and server
    
