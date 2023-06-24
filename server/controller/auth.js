@@ -75,12 +75,12 @@ const emailSend=(req,res)=>{
                         port:587,
                         secure:false,
                         auth:{
-                                user:'letsscodeit@gmail.com',
-                                pass:'qadmmaocnpxswqfn'
+                                user:process.env.API_EMAIL,
+                                pass:process.env.API_KEY
                         }
                 });
                 var mailOptions={
-                        from:'letsscodeit@gmail.com',
+                        from:process.env.API_EMAIL,
                         to:email,
                         subject:'Otp for Reseting Password',
                         text:'Use this Otp: '+otp
