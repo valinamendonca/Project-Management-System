@@ -8,20 +8,14 @@ const reg=()=>{
 
 //login 
 const login=(req,res)=>{
-        console.log(req.body);
+        //console.log(req.body);
         const {email,pass}=req.body;
-        //console.log(password);
         con.query("SELECT password FROM employee where email='"+email+"'", function (err, result1, fields) {
                 //console.log(result1);
                 if (err) throw err;
                 else if(result1.length>0){
                         const hashedPassword = result1[0].password;
-                        // Compare the entered password with the hashed password
-                        //console.log(password);
-                        //console.log(hashedPassword);
                         bcrypt.compare(pass, hashedPassword, function(err, match) {
-                                //console.log(password);
-                                //console.log(hashedPassword);
                                 if (err) {
                                 console.error('Error comparing passwords:', err);
                                 res.statusMessage = "Error";
@@ -71,7 +65,7 @@ const emailSend=(req,res)=>{
         const mailer=(email,otp)=>{
                 var nodemailer=require('nodemailer');
                 var transporter=nodemailer.createTransport({
-                        service:"gmail",
+                        service: process.env.EMAIL_PROVIDER,
                         port:587,
                         secure:false,
                         auth:{

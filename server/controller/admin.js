@@ -15,7 +15,7 @@ const users=(req,res)=>{
 }
 
 const deleteEmp=(req,res)=>{
-        console.log(req.query.id);
+        //console.log(req.query.id);
         con.query("DELETE FROM `employee` WHERE eid="+req.query.id,function(err3,res3){
                 if(err3) console.log(err3);
                 else{
@@ -25,7 +25,7 @@ const deleteEmp=(req,res)=>{
 }
 
 const editUser=(req,res)=>{
-        console.log(req.body.project_manager);
+        //console.log(req.body.project_manager);
         con.query("UPDATE `employee` SET `email`='"+req.body.email+"',`Name`='"+req.body.Name+"',`Contact_no`="+req.body.Contact_no+",`Designation`='"+req.body.Designation+"',`project_manager`="+req.body.project_manager+" WHERE eid="+req.body.eid,function(err,result){
                 if(err) console.log(err);
                 else{
@@ -65,7 +65,7 @@ const stats=(req,res)=>{
                 if(err1) console.log(err1);
                 else{
                         const employeeCount = res1[0].employeeCount;
-                        console.log("Employee Count:", employeeCount);                        
+                        //console.log("Employee Count:", employeeCount);                        
                         con.query("SELECT COUNT(*) AS totalProjects FROM `project`", function (err2, res2) {
                                 if (err2) {
                                   console.log(err2);

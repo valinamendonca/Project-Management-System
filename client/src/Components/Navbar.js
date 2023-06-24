@@ -30,15 +30,18 @@ useEffect(()=>{
   fetchData()
   .then(data=>{
     //console.log(data.Image.data);
-  const base64Image = btoa(
-          new Uint8Array(data.Image.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ''
-          )
-        );
-        const imageUrl = `data:image/jpeg;base64,${base64Image}`;
-        setImageSrc(imageUrl)
-          })
+    if(data.Image){
+      const base64Image = btoa(
+              new Uint8Array(data.Image.data).reduce(
+                (data, byte) => data + String.fromCharCode(byte),
+                ''
+              )
+            );
+      const imageUrl = `data:image/jpeg;base64,${base64Image}`;
+      setImageSrc(imageUrl)
+    }
+  })
+        
 },[])
 
 

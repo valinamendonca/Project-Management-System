@@ -81,10 +81,10 @@ function Project() {
       <div className='dashboard'>
         <Header/>
         <div style={{paddingLeft:'10px'}}>
-        {!project.length?<>
+        {!project || !project.length?<>
           <h1>No Projects created yet!</h1>
-          <button>Create a Project</button></>
-        :
+          <Link id='create' style={{textDecoration:"none",color:"black",float: "left"}} to='/create'>Add Project</Link>
+        </>:
         <>
           <h1 align='left'>Your Projects</h1>
           <Link id='create' style={{textDecoration:"none",color:"black",float: "left"}} to='/create'>Add Project</Link>

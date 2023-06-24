@@ -51,3 +51,6 @@ To start the application, run the following command in both the terminals:
  - Username: "admin"
  - Password: "admin"
 
+Employee and Project Manager
+- can be created by the admin
+- default password is demo

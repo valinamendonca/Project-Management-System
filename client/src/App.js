@@ -14,7 +14,6 @@ import Edit from './Pages/Edit';
 import Admin from './Pages/Admin'
 import User from './Pages/User'
 import Register from './Pages/Register'
-import dotenv from 'dotenv';
 
 
 
