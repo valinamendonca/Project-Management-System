@@ -12,13 +12,17 @@ Before setting up the project, ensure that you have the following prerequisites 
 ## Installation
 
 1. Clone the repository
+   
 ` git clone  `
 
-2. Open 2 terminals and navigate to client and server
+3. Open 2 terminals and navigate to client and server
+   
 ` cd client `
+
 ` cd server `
 
-3. Install the nodemodules in both the terminals
+5. Install the nodemodules in both the terminals
+   
 ` npm i `
 
 
@@ -36,12 +40,13 @@ Before setting up the project, ensure that you have the following prerequisites 
 
 # Starting the Application
 To start the application, run the following command in both the terminals:
+
 ` npm start ` 
 
 
 # Login Credentials
-
-- Admin Dashboard
+ 
+ Admin Dashboard
  - Username: "admin"
  - Password: "admin"
 
