@@ -29,7 +29,7 @@ Before setting up the project, ensure that you have the following prerequisites 
 ## Databases setup
 
 1. Create a new mysql database
-2. Locate the .env.example in the server directory, rename it to .env and update the database configuration variables.
+2. Locate the **.env.example** in the server directory, rename it to **.env** and update the database configuration variables.
 
 
 ## API Key Setup
