@@ -42,6 +42,6 @@ To start the application, run the following command in both the terminals:
 # Login Credentials
 
 - Admin Dashboard
--- Username: "admin"
--- Password: "admin"
+ - Username: "admin"
+ - Password: "admin"
 
