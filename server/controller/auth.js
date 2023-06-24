@@ -71,7 +71,7 @@ const emailSend=(req,res)=>{
         const mailer=(email,otp)=>{
                 var nodemailer=require('nodemailer');
                 var transporter=nodemailer.createTransport({
-                        service:"gmail",
+                        service: process.env.EMAIL_PROVIDER,
                         port:587,
                         secure:false,
                         auth:{
