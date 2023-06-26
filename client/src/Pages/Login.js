@@ -15,6 +15,7 @@ useEffect(()=>{
   if(localStorage.getItem("authenticated")!=null){
     if(localStorage.getItem("id")==="admin"){
       routeChange("/adminDashboard");
+      window.location.reload();
     }
     else{
       routeChange("/dashboard")
